@@ -29,3 +29,8 @@ def test_email_duplicado():
     datos = {"email": "ana@correo.com", "password": "Clave#2026"}
     c.post("/registro_usuario", json=datos)
     assert c.post("/registro_usuario", json=datos).status_code == 409
+
+def test_email_vacio():
+    datos = {"email": "", "password": "Clave#2026"}
+    r = cliente().post("/registro_usuario", json=datos)
+    assert r.status_code == 422
