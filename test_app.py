@@ -34,3 +34,8 @@ def test_email_vacio():
     datos = {"email": "", "password": "Clave#2026"}
     r = cliente().post("/registro_usuario", json=datos)
     assert r.status_code == 422
+
+def test_password_sin_simbolo():
+    r = cliente().post("/registro_usuario",
+                       json={"email": "ana@correo.com", "password": "Clave2026"})
+    assert r.status_code == 422
